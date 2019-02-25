@@ -4,13 +4,33 @@ Usefull functions for js
 
 ## Navigation
 - [Installation](#Installation)
-- [Usage](#Usage)
+- _Documentation_
+  * [Javascript](#Javascript)
 
 ## Installation
 
 Download the file for the desired language, than include it in your script.
 
-## Usage
+## Javascript
+
+__Notes__
+* _difference between an Array and an Object (examples)_
+  - _An Array:_
+    ```javascript
+      ['This', 'is', 'an', 'example', 'of', 'an', 'Array']
+    ```
+  - _An Object:_
+    ```javascript
+      {
+        key1: 'This',
+        key2: 'is',
+        key3: 'an',
+        key4: 'example',
+        key5: 'of',
+        key6: 'an'
+        key7: 'Object;'
+      }
+    ```
 
 * _prototype functions_
   
@@ -97,4 +117,9 @@ Download the file for the desired language, than include it in your script.
         NodeList(1) [div].isset(0);       //true
         NodeList(1) [div[.isset(1);       //false
         NodeList(0).isset(0);             //false, and it always will, because there are no elements in this case
+      ```
+    - __.spacing( Number: amount = 1 )__
+      _Applied on HTMLElements and NodeLists_
+      ```javascript
+        //HTMLElement
       ```

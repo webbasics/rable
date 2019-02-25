@@ -14,6 +14,9 @@ Download the file for the desired language, than include it in your script.
 
 * _the ```_``` function_
   1. _prototype functions_
+  
+    __Note: prototype function work as shown here: ```object.yourPrototypeFunction()```__
+    
     __.switch()__
       _applied on booleans only_
       ```javascript

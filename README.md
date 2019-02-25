@@ -74,3 +74,27 @@ Download the file for the desired language, than include it in your script.
           "my string".is()                //"String"
           true.is()                       //"Boolean"
       ```
+    - __.isset( String: key, Boolean: search_val = false )__
+      _Applied on Arrays, Objects and NodeLists_
+      
+      __Note: Some examples are invalid and will first need to be defined in an variable!__
+      
+      ```javascript
+        //Array, search_val can affect the algorithm.
+        ['val'].isset('val');             //true, search_val will be true because its searching an array and input is a var
+        ['val'].isset(0);                 //true, search_val will be false because its searching an array and input is a number
+        ['val'].isset(0, true);           //false, search_val will be true because it has been told so. value 0 doesnt exist
+        [2, 0].isset(0, true);            //true, because value 0 exists in array
+        [].isset('val');                  //false, and it always will, because it's empty
+        
+        //Object, search_val cannot (yet) affect the algorithm
+        {test: "test"}.isset('test');     //true
+        {test: "test"}.isset('srch');     //false
+        {}.isset('test');                 //false, and it always will, because it's empty
+        
+        //NodeList, search_val cannot (yet) affect the algorithm.
+        NodeList(1) [div].isset(div);     //false, you cannot search by element name
+        NodeList(1) [div].isset(0);       //true
+        NodeList(1) [div[.isset(1);       //false
+        NodeList(0).isset(0);             //false, and it always will, because there are no elements in this case
+      ```

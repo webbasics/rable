@@ -31,6 +31,17 @@ __Notes__
         key7: 'Object;'
       }
     ```
+* _description and difference between an HTMLElement and an NodeList_
+ - _An HTMLElement:_
+   __Literly an HTML Element__
+   ```javascript
+    <div class="exampleClass" id="exampleID">Example text</div>
+   ```
+ - _An NodeList:_
+   __A List of HTMLElements_
+   ```javascript
+    NodeList(2) [div.exampleClass, p#exampleID]
+   ```
 
 * _prototype functions_
   
@@ -118,8 +129,43 @@ __Notes__
         NodeList(1) [div[.isset(1);       //false
         NodeList(0).isset(0);             //false, and it always will, because there are no elements in this case
       ```
-    - __.spacing( Number: amount = 1 )__
+    - __.spacing( Number: amount = 1, *NodeList* String: item ( = Boolean: false))__
       _Applied on HTMLElements and NodeLists_
+      
+      __Note: this will add the amount of ```<br>``` elements specified in 'amount'__
+      
       ```javascript
-        //HTMLElement
+       //Example Page
+       //<div class="HTMLElement"></div>
+       
+       //<div class="NodeList"></div>
+       //<div class="NodeList"></div>
+       
+       //<div class="NodeList1"></div>
+       //<div class="NodeList1"></div>
+      
+      
+       _('.HTMLElement').spacing(1);
+        
+       _('.NodeList').spacing(1);
+        
+       _('.NodeList1').spacing(1, 0);
+       _('.NodeList1').spacing(2, 1);
+        
+       //Expected Output
+       //<div class="HTMLElement"></div>
+       //<br>
+       
+       //<div class="NodeList"></div>
+       //<br>
+       //<div class="NodeList"></div>
+       //<br>
+       
+       //<div class="NodeList1"></div>
+       //<br>
+       //<div class="NodeList1"></div>
+       //<br>
+       //<br>
+        
+        
       ```

@@ -16,7 +16,7 @@ Download the file for the desired language, than include it in your script.
   
     __Note: prototype function work as shown here: ```object.yourPrototypeFunction()```__
     
-    __.switch()__
+    - __.switch()__
       _applied on booleans only_
       ```javascript
         true.switch()     //true is switched to false

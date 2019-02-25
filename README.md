@@ -129,7 +129,7 @@ __Notes__
         NodeList(1) [div[.isset(1);           //false
         NodeList(0).isset(0);                 //false, and it always will, because there are no elements in this case
       ```
-    - __.spacing( Number: amount = 1, *NodeList* String: item ( = Boolean: false))__
+    - __.spacing( Number: amount = 1, *NodeList* Number: item ( = Boolean: false))__
       _Applied on HTMLElements and NodeLists_
       
       __Note: this will add the amount of ```<br>``` elements specified in 'amount'__
@@ -143,15 +143,15 @@ __Notes__
        NodeList(2) [div, div].spacing(1)      //(for both divs: ) <div><br></div>
        NodeList(2) [div, div].spacing(2, 0)   //(only first div:) <div><br></div>, because you said it to only apply it to the first div
       ```
-    - _.geth( *NodeList* Number: item ( = Boolean: false) )_
-     _Applied on HTMLElements and NodeLists_
+    - __.geth( *NodeList* Number: item ( = Boolean: false) )__
+      _Applied on HTMLElements and NodeLists_
      
-     __Note: geth stands for get html, it will return the content inside the element__
+      __Note: geth stands for get html, it will return the content inside the element__
      
-     ```javascript
-      <div>some content</div>.geth()          //"some content"
+      ```javascript
+       <div>some content</div>.geth()          //"some content"
       
-      //the content of div 1 will be "this is content 1" and for 2 "this is content 2"
-      NodeList(2) [div, div].geth()           //["this is content 1", "this is content 2"]
-      NodeList(2) [div, div].geth(0)          //"this is content 1"
-     ```
+       //the content of div 1 will be "this is content 1" and for 2 "this is content 2"
+       NodeList(2) [div, div].geth()           //["this is content 1", "this is content 2"]
+       NodeList(2) [div, div].geth(0)          //"this is content 1"
+      ```

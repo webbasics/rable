@@ -30,7 +30,8 @@ Download the file for the desired language, than include it in your script.
         - E,e: empty
         - U,u: undefined
         - F,f: false
-        Once an other factor has been set, the default will be overwritten!
+        
+        __Once an other factor has been set, the default factor will be overwritten!__
       
       ```javascript
         false.valid()       //true, because the false factor has not been set.

@@ -26,10 +26,10 @@ Download the file for the desired language, than include it in your script.
       _applied on Booleans, Strings, Numbers and Functions_
       
       __Factor__
-        - N,n: null
-        - E,e: empty
-        - U,u: undefined
-        - F,f: false
+        - N/n: null
+        - E/e: empty
+        - U/u: undefined
+        - F/f: false
         
         __Once an other factor has been set, the default factor will be overwritten!__
       

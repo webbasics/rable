@@ -17,9 +17,25 @@ Download the file for the desired language, than include it in your script.
     __Note: prototype function work as shown here: ```object.yourPrototypeFunction()```__
     
     - __.switch()__
-      _applied on booleans only_
+      _applied on Booleans only_
       ```javascript
         true.switch()     //true is switched to false
         false.switch()    //false is switched to true
       ```
-
+    - __.valid(``` [String: factor = "NU"] ```)__
+      _applied on Booleans, Strings, Numbers and Functions_
+      
+      __Factor__
+        - N,n: null
+        - E,e: empty
+        - U,u: undefined
+        - F,f: false
+        Once an other factor has been set, the default will be overwritten!
+      
+      ```javascript
+        false.valid()       //true, because the false factor has not been set.
+        false.valid("F")    //false, because the false factor has been set.
+        
+        "".valid()          //false, because the empty factor has not been set.
+        "".valid("E")       //true, because the empty factor has been set.
+      ```

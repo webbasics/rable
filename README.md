@@ -22,7 +22,7 @@ Download the file for the desired language, than include it in your script.
         true.switch()     //true is switched to false
         false.switch()    //false is switched to true
       ```
-    - __.valid(``` [String: factor = "NU"] ```)__
+    - __.valid( String: factor = "NU" )__
       _applied on Booleans, Strings, Numbers and Functions_
       
       __Factor__

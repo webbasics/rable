@@ -12,8 +12,7 @@ Download the file for the desired language, than include it in your script.
 
 ## Usage
 
-* _the ```_``` function_
-  1. _prototype functions_
+* _prototype functions_
   
     __Note: prototype function work as shown here: ```object.yourPrototypeFunction()```__
     

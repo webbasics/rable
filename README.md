@@ -38,7 +38,7 @@ __Notes__
     <div class="exampleClass" id="exampleID">Example text</div>
    ```
  - _An NodeList:_
-   __A List of HTMLElements_
+   __A List of HTMLElements__
    ```javascript
     NodeList(2) [div.exampleClass, p#exampleID]
    ```

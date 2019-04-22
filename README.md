@@ -1,6 +1,6 @@
 # Rable
 
-Usefull functions for js
+A new toolkit and stylesheet for the web!
 
 ## Navigation
 - [Installation](#Installation)
@@ -11,7 +11,7 @@ Usefull functions for js
 
 ## Installation
 
-Download the file for the desired language, than include it in your script.
+Download the file for the desired language, then include it in your script.
 
 ## Javascript
 
@@ -50,13 +50,13 @@ __Notes__
     __Note: prototype function work as shown here: ```object.yourPrototypeFunction()```__
 
     - __.switch()__
-      _applied on Booleans only_
+      _Applied on Booleans_
       ```javascript
         true.switch()                         //true is switched to false
         false.switch()                        //false is switched to true
       ```
     - __.valid( String: factor = "NU" )__
-      _applied on Booleans, Strings, Numbers, Functions, Arrays and Objects_
+      _Applied on Booleans, Strings, Numbers, Functions, Arrays and Objects_
 
       __Factor__
         - N/n: null
@@ -158,7 +158,7 @@ __Notes__
        NodeList(2) [div, div].geth()           //["this is content 1", "this is content 2"]
        NodeList(2) [div, div].geth(0)          //"this is content 1"
       ```
-    - __.seth( String: content )__
+    - __.seth( String: content, *NodeList* Number: item ( = Boolean: false) )__
       _Applied on HTMLElements and NodeLists_
 
       __Note: seth stands fot set html, this will overwrite the existing content__
@@ -171,7 +171,7 @@ __Notes__
         NodeList(2) [div, div].seth('new')      //NodeList(2) [div, div], where the content has been updated to 'new'
         NodeList(2) [div, div].seth('new', 0)   //Nodelist(2) [div, div] where the content of only the first div has been set to 'new'
       ```
-    - __.seti( String: newid )__
+    - __.seti( String: newid, *NodeList* Number: item ( = Boolean: false) )__
       _Applied on HTMLElements and NodeLists_
 
       __Note: seti stands for set id, this will overwrite the existing id__
@@ -184,3 +184,18 @@ __Notes__
         NodeList(2) [div#d, div#d].seti('n')    //NodeList(2) [div#n, div#n]
         NodeList(2) [div#d, div#d].seti('n', 0) //NodeList(2) [div#n, div#d]
       ```
+    - __.addh( String: content, *NodeList* Number: item ( = Boolean: false) )__
+      _Applied on HTMLElements and NodeLists_
+
+      __Note: addh stands for add html, this will add the new content next to the existing content if set__
+
+      ```javascript
+        //HTMLElement
+        <div>content</div>.addh(' and more')    //<div>content and more</div>
+
+        //NodeList, both div's content set to 'this is'
+        NodeList(2) [div, div].addh(' easy')    //NodeList(2) [div, div], where this content of both div's is 'this is easy'
+        NodeList(2) [div, div].addh(' easy', 0) //NodeList(2) [div, div], where only the first div has been affected
+      ```
+
+    

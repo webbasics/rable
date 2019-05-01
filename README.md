@@ -236,6 +236,6 @@ Download the file for the desired language, then include it in your script.
             <div></div>.adde('p')                       //<p></p>, it will return the new child element
 
             //NodeList
-            NodeList(2) [div, div].adde('p')          //NodeList(2) [div, div], where an p element has been added to both divs
-            NodeList(2) [div, div].adde('p', 0)       //<p></p>, where the new child element of the first div has been returned
+            NodeList(2) [div, div].adde('p')            //NodeList(2) [div, div], where an p element has been added to both divs
+            NodeList(2) [div, div].adde('p', 0)         //<p></p>, where the new child element of the first div has been returned
         ```

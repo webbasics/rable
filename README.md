@@ -140,7 +140,7 @@ Download the file for the desired language, then include it in your script.
                 NodeList(0).isset(0);                   //false, and it always will, because there are no elements in this case
         ```
 
-    -   **.spacing( Number: amount = 1, (> NodeList <) Number: item ( = Boolean: false))**
+    -   **.spacing( Number: amount = 1, [NodeList] Number: item ( = Boolean: false))**
         _Applied on HTMLElements and NodeLists_
 
         **Note: this will add the amount of `<br>` elements specified in 'amount'**
@@ -155,7 +155,7 @@ Download the file for the desired language, then include it in your script.
             NodeList(2) [div, div].spacing(2, 0)        //(only first div:) <div><br><br></div>, because you said it to only apply it to the first div
         ```
 
-    -   **.geth( (> NodeList <) Number: item ( = Boolean: false) )**
+    -   **.geth( [NodeList] Number: item ( = Boolean: false) )**
         _Applied on HTMLElements and NodeLists_
 
         **Note: geth stands for get html, it will return the content inside the element**
@@ -169,7 +169,7 @@ Download the file for the desired language, then include it in your script.
             NodeList(2) [div, div].geth(0)              //"this is content 1"
         ```
 
-    -   **.seth( String: content, (> NodeList <) Number: item ( = Boolean: false) )**
+    -   **.seth( String: content, [NodeList] Number: item ( = Boolean: false) )**
         _Applied on HTMLElements and NodeLists_
 
         **Note: seth stands fot set html, this will overwrite the existing content**
@@ -183,7 +183,7 @@ Download the file for the desired language, then include it in your script.
             NodeList(2) [div, div].seth('new', 0)       //Nodelist(2) [div, div] where the content of only the first div has been set to 'new'
         ```
 
-    -   **.seti( String: newid, (> NodeList <) Number: item ( = Boolean: false) )**
+    -   **.seti( String: newid, [NodeList] Number: item ( = Boolean: false) )**
         _Applied on HTMLElements and NodeLists_
 
         **Note: seti stands for set id, this will overwrite the existing id**
@@ -197,7 +197,7 @@ Download the file for the desired language, then include it in your script.
             NodeList(2) [div#d, div#d].seti('n', 0)     //NodeList(2) [div#n, div#d]
         ```
 
-    -   **.addh( String: content, (> NodeList <) Number: item ( = Boolean: false) )**
+    -   **.addh( String: content, [NodeList] Number: item ( = Boolean: false) )**
         _Applied on HTMLElements and NodeLists_
 
         **Note: addh stands for add html, this will add the new content next to the existing content if set**
@@ -207,14 +207,14 @@ Download the file for the desired language, then include it in your script.
             <div>content</div>.addh(' and more')        //<div>content and more</div>
 
             //NodeList, both div's content set to 'this is'
-            NodeList(2) [div, div].addh(' easy')        //NodeList(2) [div, div], where this content of both div's is 'this is easy'
+            NodeList(2) [div, div].addh(' easy')        //NodeList(2) [div, div], where the content of both div's is 'this is easy'
             NodeList(2) [div, div].addh(' easy', 0)     //NodeList(2) [div, div], where only the first div has been affected
         ```
 
-    -   **.addc( String: newclass, (> NodeList <) Number: item ( = Boolean: false ) )**
+    -   **.addc( String: newclass, [NodeList] Number: item ( = Boolean: false ) )**
         _Applied on HTMLElements and NodeLists_
 
-        **Note: addc stands for add class, this won't remove any other possible classes on that element**
+        **Note: addc stands for add class, this won't remove any other possible classes**
 
         ```javascript
             //HTMLElement
@@ -226,4 +226,16 @@ Download the file for the desired language, then include it in your script.
             NodeList(2) [div, div].addc('test', 0)      //NodeList(2) [div.test, div]
         ```
 
-    -   **.adde( String: element, *NodeList* )
+    -   **.adde( String: element, [NodeList] Number: item ( = Boolean) )**
+        _Applied on HTMLElements and NodeLists_
+
+        **Note: adde stands for add element, this won't remove any other possible elements**
+
+        ```javascript
+            //HTMLElement
+            <div></div>.adde('p')                       //<p></p>, it will return the new child element
+
+            //NodeList
+            NodeList(2) [div, div].adde('p')          //NodeList(2) [div, div], where an p element has been added to both divs
+            NodeList(2) [div, div].adde('p', 0)       //<p></p>, where the new child element of the first div has been returned
+        ```

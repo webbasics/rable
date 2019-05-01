@@ -7,41 +7,43 @@ Boolean.prototype.switch = function() {
 }
 
 Boolean.prototype.valid =
-String.prototype.valid =
-Number.prototype.valid =
-Function.prototype.valid = function(type = true) {
-    return _.valid(this.valueOf(), type);
-}
+    String.prototype.valid =
+    Number.prototype.valid =
+    Function.prototype.valid = function(type = true) {
+        return _.valid(this.valueOf(), type);
+    }
 
 Array.prototype.valid =
-Object.prototype.valid = function() {
-    return true;
-}
+    Object.prototype.valid = function() {
+        return true;
+    }
 
 var funcs = ['isBoolean', 'isString', 'isNumber', 'isFunction', 'isArray', 'isObject', 'isHTMLElement', 'isNodeList', 'is'];
 funcs.forEach(function(func) {
     Boolean.prototype[func] =
-    String.prototype[func] =
-    Number.prototype[func] =
-    Function.prototype[func] =
-    Array.prototype[func] =
-    Object.prototype[func] =
-    HTMLElement.prototype[func] =
-    NodeList.prototype[func] = function() {
-        return _[func](this.valueOf());
-    }
+        String.prototype[func] =
+        Number.prototype[func] =
+        Function.prototype[func] =
+        Array.prototype[func] =
+        Object.prototype[func] =
+        HTMLElement.prototype[func] =
+        NodeList.prototype[func] = function() {
+            return _[func](this.valueOf());
+        }
 });
 
 Array.prototype.isset =
-Object.prototype.isset =
-NodeList.prototype.isset = function(val, search_val = false) {
-    return _.isset(val, this.valueOf(), search_val);
-}
+    Object.prototype.isset =
+    NodeList.prototype.isset = function(val, search_val = false) {
+        return _.isset(val, this.valueOf(), search_val);
+    }
 
 //no specific catagorie
 
-HTMLElement.prototype.spacing = function(amt = 1) {                             //spacing ~> spacing
-    _.loop(amt, () => {this.adde('br');});
+HTMLElement.prototype.spacing = function(amt = 1) { //spacing ~> spacing
+    _.loop(amt, () => {
+        this.adde('br');
+    });
     return this;
 }
 
@@ -58,7 +60,24 @@ NodeList.prototype.spacing = function(amt, item = false) {
 
 //element functions for obtaining information
 
-HTMLElement.prototype.geth = function() {                                       //geth ~> get html
+HTMLElement.prototype.geta = function() {
+    return this.getAttribute();
+}
+
+NodeList.prototype.geta = function(item = false) {
+    var list = [];
+    this.forEach(function(elmnt) {
+        list.push(elmnt.geta());
+    });
+
+    if (item.isNumber() && _.valid(list[item])) {
+        return list[item];
+    } else {
+        return list;
+    }
+}
+
+HTMLElement.prototype.geth = function() { //geth ~> get html
     return this.innerHTML;
 }
 
@@ -77,7 +96,22 @@ NodeList.prototype.geth = function(item = false) {
 
 //element functions for updating information
 
-HTMLElement.prototype.seth = function(content = '') {                                //seth ~> set html
+HTMLElement.prototype.seta = function(attr, value) { //seta ~ set attribute
+    this.setAttribute(attr, value);
+    return this;
+}
+
+NodeList.prototype.seta = function(attr, value, item = false) {
+    if (item.isNumber() && this.isset(item)) {
+        this[item].seta(attr, value);
+    } else {
+        this.forEach(function(elmnt) {
+            elmnt.seta(attr, value);
+        })
+    }
+}
+
+HTMLElement.prototype.seth = function(content = '') { //seth ~> set html
     this.innerHTML = content;
     return this;
 }
@@ -113,7 +147,7 @@ NodeList.prototype.seti = function(newid, item = false) {
 
 //element functions for adding new information
 
-HTMLElement.prototype.addh = function(content) {                                //addh ~> add html
+HTMLElement.prototype.addh = function(content) { //addh ~> add html
     this.seth(this.geth() + content);
     return this;
 }
@@ -130,7 +164,7 @@ NodeList.prototype.addh = function(content, item = false) {
     return this;
 }
 
-HTMLElement.prototype.addc = function(newclass) {                               //addc ~> add class
+HTMLElement.prototype.addc = function(newclass) { //addc ~> add class
     if (newclass.isArray()) {
         newclass.forEach(function(nwclss) {
             this.addc(nwclss);
@@ -154,7 +188,7 @@ NodeList.prototype.addc = function(newclass, item = false) {
     return this;
 }
 
-HTMLElement.prototype.adde = function(element, amt = false) {                                //adde ~> add element
+HTMLElement.prototype.adde = function(element) { //adde ~> add element
     var element = document.createElement(element);
     this.appendChild(element);
     return element;
@@ -174,7 +208,7 @@ NodeList.prototype.adde = function(element, item = false) {
 
 //element functions for checking information
 
-HTMLElement.prototype.hasc = function(theclass) {                               //hasc ~> has class
+HTMLElement.prototype.hasc = function(theclass) { //hasc ~> has class
     return this.classList.contains(theclass);
 }
 
@@ -190,7 +224,7 @@ NodeList.prototype.hasc = function(theclass, item = false) {
     }
 }
 
-HTMLElement.prototype.hasi = function(id = false) {                               //hasi ~> has id
+HTMLElement.prototype.hasi = function(id = false) { //hasi ~> has id
     if (id === false) {
         return this.id.valid('neuf');
     } else {
@@ -200,7 +234,22 @@ HTMLElement.prototype.hasi = function(id = false) {                             
 
 //element functions for removing information
 
-HTMLElement.prototype.remc = function(oldclass) {                               //remc ~> remove class
+HTMLElement.prototype.rema = function(attribute) {
+    this.removeAttribute(attribute);
+    return this;
+}
+
+NodeList.prototype.rema = function(attribute, item = false) {
+    if (item.isNumber() && this.isset(item)) {
+        this[item].rema(attribute);
+    } else {
+        this.forEach(function(elmnt) {
+            elmnt.rema(attribute);
+        });
+    }
+}
+
+HTMLElement.prototype.remc = function(oldclass) { //remc ~> remove class
     if (oldclass.isArray()) {
         oldclass.forEach(function(olclss) {
             this.remc(olclss);
@@ -224,7 +273,7 @@ NodeList.prototype.remc = function(oldclass, item = false) {
     return this;
 }
 
-HTMLElement.prototype.clean = function() {                                      //clean the element
+HTMLElement.prototype.clean = function() { //clean the elements content
     this.seth('');
     return this;
 }
@@ -241,7 +290,7 @@ NodeList.prototype.clean = function(item = false) {
     return this;
 }
 
-HTMLElement.prototype.remi = function() {                                       //remi ~> remove id
+HTMLElement.prototype.remi = function() { //remi ~> remove id
     this.id = '';
     return this;
 }
@@ -306,7 +355,7 @@ NodeList.prototype.insert = function(data, item = false) {
 
 //element functions for selecting elements
 
-HTMLElement.prototype.parent = function() {                                     //parent ~> parent
+HTMLElement.prototype.parent = function() { //parent ~> parent
     return this.parentElement;
 }
 
@@ -322,7 +371,7 @@ NodeList.prototype.parent = function(item = false) {
     }
 }
 
-HTMLElement.prototype.child = function(chld = false) {                          //child ~> child
+HTMLElement.prototype.child = function(chld = 0) { //child ~> child
     var child = this.childNodes;
     if (chld.isNumber() && child.isset(chld)) {
         return child[chld];
@@ -331,7 +380,7 @@ HTMLElement.prototype.child = function(chld = false) {                          
     }
 }
 
-NodeList.prototype.child = function(item = false, chld = false) {
+NodeList.prototype.child = function(chld = 0, item = false) {
     if (item.isNumber() === false) {
         item = 0;
     }
@@ -343,7 +392,57 @@ NodeList.prototype.child = function(item = false, chld = false) {
     }
 }
 
-function _(element, item = false) {                                             //get element by name, classname or id, all means that you select all elements
+HTMLElement.prototype.hide = function() {
+    var opacity = 1;
+    var elmnt = this;
+    var timer = setInterval(function() {
+        if (opacity <= 0.1) {
+            clearInterval(timer);
+            elmnt.style.display = 'none';
+        } else {
+            elmnt.style.opacity = opacity;
+            elmnt.style.filter = 'alpha(opacity=' + opacity * 100 + ')';
+            opacity -= opacity * 0.1;
+        }
+    }, 10);
+}
+
+NodeList.prototype.hide = function(item = false) {
+    if (item.isNumber() && this.isset(item)) {
+        this[item].hide();
+    } else {
+        this.forEach(function(elmnt) {
+            elmnt.hide();
+        });
+    }
+}
+
+HTMLElement.prototype.show = function() {
+    var opacity = 0.1;
+    var elmnt = this;
+    elmnt.style.display = 'block';
+    var timer = setInterval(function() {
+        if (opacity >= 1) {
+            clearInterval(timer);
+        } else {
+            elmnt.style.opacity = opacity;
+            elmnt.style.filter = 'alpha(opacity=' + opacity * 100 + ')';
+            opacity += opacity * 0.1;
+        }
+    }, 10);
+}
+
+NodeList.prototype.show = function(item = false) {
+    if (item.isNumber() && this.isset(item)) {
+        this[item].show();
+    } else {
+        this.forEach(function(elmnt) {
+            elmnt.show();
+        });
+    }
+}
+
+function _(element, item = false) { //get element by name, classname or id, all means that you select all elements
     if (element === document || element === 'document' || element === 'doc') {
         return document;
     } else {
@@ -360,11 +459,11 @@ function _(element, item = false) {                                             
     }
 }
 
-_.body = function() {                                                           //get body fast
+_.body = function() { //get body fast
     return _('body');
 }
 
-_.doc = _.document = function() {                                               //get document fast
+_.doc = _.document = function() { //get document fast
     return document;
 }
 
@@ -474,12 +573,11 @@ _.ready = function(func, obj = false) {
 
     }
 
-
-  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
 }
 
 _.isset = function(key, obj, search_val = false) {
@@ -507,7 +605,7 @@ _.isset = function(key, obj, search_val = false) {
 }
 
 _.fillObject = function(masterArr, newArr, validate = true) {
-    for(var key in newArr) {
+    for (var key in newArr) {
         if (!validate) {
             masterArr[key] = newArr[key];
         } else if (validate === true) {
@@ -608,7 +706,7 @@ _.request = function(options) {
 
     options = _.fillObject(defaultConfig, options, "nu");
     options.url = (!options.url ? defaultConfig.url : options.url);
-    options.method = (options.method.toLowerCase() !== 'post' ? (options.method.toLowerCase() !== 'get' ? 'post' : 'get') : 'post');
+    options.method = (options.method.toLowerCase() !== 'post' ? (options.method.toLowerCase() !== 'get' ? defaultConfig.method : 'get') : 'post');
     options.async = (options.async.isBoolean() ? options.async : true);
 
     var request = new XMLHttpRequest();
@@ -669,4 +767,16 @@ _.request = function(options) {
 
 _.random = function(min, max, maxDecimal = 0) {
     return parseFloat((Math.random() * (max - min) + min).toFixed(maxDecimal));
+}
+
+_.url = function() {
+    return window.location.href;
+}
+
+_.onMobile = function() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true;
+    } else {
+        return false;
+    }
 }
